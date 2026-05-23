@@ -3,30 +3,40 @@
 Ask natural language questions about any PDF document using Retrieval-Augmented Generation (RAG).
 
 ## Architecture
+
 - **Frontend**: React.js + TypeScript
 - **Backend**: FastAPI (Python)
-- **Embeddings**: OpenAI text-embedding-ada-002
+- **Embeddings**: Google Gemini (`gemini-embedding-001`)
 - **Vector Store**: ChromaDB
-- **LLM**: GPT-3.5-turbo / GPT-4o
+- **LLM**: Google Gemini (`gemini-2.5-flash`)
 - **Orchestration**: LangChain
 
 ## How it works
-1. Upload a PDF → text is extracted, chunked, embedded, stored in ChromaDB
-2. Ask a question → question is embedded → similar chunks retrieved → GPT answers with context
+
+1. Upload a PDF → text is extracted and split into chunks
+2. Each chunk is embedded using Gemini and stored in ChromaDB
+3. Ask a question → question is embedded → semantically similar chunks retrieved
+4. Gemini answers using only the retrieved context (no hallucination)
 
 ## Setup
-\```bash
-# Backend
-cd backend && python -m venv venv && source venv/bin/activate
+
+### Backend
+```bash
+cd backend
+py -3.11 -m venv venv
+venv\Scripts\activate        # Windows
 pip install -r requirements.txt
-cp .env.example .env  # Add your OpenAI API key
-uvicorn main:app --reload
+cp .env.example .env         # Add your GEMINI_API_KEY
+uvicorn main:app --reload --port 8000
+```
 
-# Frontend  
-cd frontend && npm install && npm start
-\```
+### Frontend
+```bash
+cd frontend
+npm install
+npm start
+```
 
-## Docker
-\```bash
-docker-compose up --build
-\```
+## Environment Variables
+
+Create `backend/.env`:
