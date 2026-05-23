@@ -1,0 +1,16 @@
+fastapi==0.111.0
+uvicorn==0.29.0
+python-multipart==0.0.9
+python-dotenv==1.0.1
+pypdf==4.2.0
+pydantic==2.7.4
+
+# LangChain — all same family
+langchain==0.3.25
+langchain-core==0.3.59
+langchain-community==0.3.24
+langchain-google-genai==2.1.4
+langchain-text-splitters==0.3.8
+
+# ChromaDB
+chromadb==0.4.24
