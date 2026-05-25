@@ -17,26 +17,3 @@ Ask natural language questions about any PDF document using Retrieval-Augmented 
 2. Each chunk is embedded using Gemini and stored in ChromaDB
 3. Ask a question → question is embedded → semantically similar chunks retrieved
 4. Gemini answers using only the retrieved context (no hallucination)
-
-## Setup
-
-### Backend
-```bash
-cd backend
-py -3.11 -m venv venv
-venv\Scripts\activate        # Windows
-pip install -r requirements.txt
-cp .env.example .env         # Add your GEMINI_API_KEY
-uvicorn main:app --reload --port 8000
-```
-
-### Frontend
-```bash
-cd frontend
-npm install
-npm start
-```
-
-## Environment Variables
-
-Create `backend/.env`:
