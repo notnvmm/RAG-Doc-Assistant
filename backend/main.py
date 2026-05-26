@@ -24,6 +24,7 @@ app.add_middleware(
 
 UPLOAD_DIR = "./uploaded_docs"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
+os.makedirs("./chroma_db", exist_ok=True)
 
 
 # --- Request/Response Models (Pydantic) ---
